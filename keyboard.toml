@@ -11,30 +11,107 @@ chip = "nrf52840"
 # row2col = true
 rows = 4
 cols = 10
-layers = 2
-keymap = [
-    [
-        ["Q", "W", "F", "P", "B", "J", "L", "U", "Y", "A"],
-        ["A", "R", "S", "T", "G", "M", "N", "E", "I", "O"],
-        ["Z", "X", "C", "D", "V", "K", "H", "A", "A", "A"],
-        ["_", "_", "A", "A", "A", "A", "A", "A", "_", "_"]
-    ],
-    [
-        ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-        ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-        ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"],
-        ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_"]
-    ],
-]
+layers = 9
+matrix_map = """
+(0,0) (0,1) (0,2) (0,3) (0,4) (0,5) (0,6) (0,7) (0,8) (0,9)
+(1,0) (1,1) (1,2) (1,3) (1,4) (1,5) (1,6) (1,7) (1,8) (1,9)
+(2,0) (2,1) (2,2) (2,3) (2,4) (2,5) (2,6) (2,7) (2,8) (2,9)
+            (3,2) (3,3) (3,4) (3,5) (3,6) (3,7) 
+"""
+
+[[layer]]
+name = "BaseLayer" #optional name for the layer
+keys = """
+Q W F P B J L U Y A
+MT(A, LGui) MT(R, LAlt) MT(S, LCtrl) MT(T, LShift) G M MT(N, RShift) MT(E, RCtrl) MT(I, RAlt) MT(O, RGui)
+Z X C D V K H Dot A A
+    LT(3, Esc) LT(1, Space) LT(2, Tab) LT(5, Enter) LT(4, Backspace) LT(6, Delete)
+"""
+
+[[layer]]
+name = "Nav" #optional name for the layer
+keys = """
+_    _    _     _      _ Again    Paste      Copy   Cut      Undo
+LGui LAlt LCtrl LShift _ CapsLock Left       Down   Up       Right
+_    _    _     _      _ Insert    Home      PageUp PageDown End
+          A     A      A Enter     Backspace Delete
+"""
+
+[[layer]]
+name = "Mouse" #optional name for the layer
+keys = """
+_    _    _     _      _ Again    Paste      Copy   Cut      Undo
+LGui LAlt LCtrl LShift _ _ MouseLeft MouseDown MouseUp MouseRight
+_    _    _     _      _ _ _ _ _ _
+          _ _ _ MouseBtn1 MouseBtn3 MouseBtn2
+"""
+
+[[layer]]
+name = "Media" #optional name for the layer
+keys = """
+_    _    _     _      _ _ _       _    _    _
+LGui LAlt LCtrl LShift _ _ RShift RCtrl RAlt RGui
+_    _    _     _      _ _ _      _     _    _
+          _ _ _ _ _ _
+"""
+
+[[layer]]
+name = "Num" #optional name for the layer
+keys = """
+_ Kc7 Kc8 Kc9 _ _ _       _    _    _
+_ Kc4 Kc5 Kc6 _ _ RShift RCtrl RAlt RGui
+_ Kc1 Kc2 Kc3 _ _ _      _     _    _
+          _ Kc0 _ _ _ _
+"""
+
+[[layer]]
+name = "Sym" #optional name for the layer
+keys = """
+_    _    _     _      _ _ _       _    _    _
+LGui LAlt LCtrl LShift _ _ RShift RCtrl RAlt RGui
+_    _    _     _      _ _ _      _     _    _
+          _ _ _ _ _ _
+"""
+
+[[layer]]
+name = "Fun" #optional name for the layer
+keys = """
+F12 F7 F8 F9 _ _ _ _ _ _
+F11 F4 F5 F6 _ _ RShift RCtrl RAlt RGui
+F10 F1 F2 F3 _ _ _ _ _ _
+       Esc Space Tab _ _ _
+"""
+
+[[layer]]
+name = "Game" #optional name for the layer
+keys = """
+Tab Q W E R T Y U I O 
+Shift A S D F G H J K L 
+LCtrl Z X C V B N M A A 
+       Esc Space M _ _ _
+"""
+
+[[layer]]
+name = "Game2" #optional name for the layer
+keys = """
+_ Kc7 Kc8 Kc9 _ _ _       _    _    _
+Kc0 Kc4 Kc5 Kc6 _ _ RShift RCtrl RAlt RGui
+_ Kc1 Kc2 Kc3 _ _ _      _     _    _
+          _ _ _ _ _ _
+"""
 
 [ble]
 enabled = true
 
 [behavior]
-tap_hold = { enable_hrm = true }
+tap_hold = { enable_hrm = true, prior_idle_time = "100ms", hold_timeout = "200ms", post_wait_time = "25ms"}
 
 [split]
 connection = "ble"
+
+[storage]
+enabled = true
+clear_storage = true
 
 [split.central]
 rows = 4
