@@ -7,8 +7,6 @@ manufacturer = "rmk"
 chip = "nrf52840"
 
 [layout]
-# WARNING: Currently row2col/col2row is set in RMK's feature gate, configs here do nothing actually
-# row2col = true
 rows = 4
 cols = 10
 layers = 9
@@ -22,31 +20,31 @@ matrix_map = """
 [[layer]]
 name = "BaseLayer" #optional name for the layer
 keys = """
-Q W F P B J L U Y A
-MT(A, LGui) MT(R, LAlt) MT(S, LCtrl) MT(T, LShift) G M MT(N, RShift) MT(E, RCtrl) MT(I, RAlt) MT(O, RGui)
-Z X C D V K H Dot A A
-    LT(3, Esc) LT(1, Space) LT(2, Tab) LT(5, Enter) LT(4, Backspace) LT(6, Delete)
+Q           W           F            P             B          J            L                U            Y           LeftBracket
+MT(A, LGui) MT(R, LAlt) MT(S, LCtrl) MT(T, LShift) G          M            MT(N, RShift)    MT(E, RCtrl) MT(I, RAlt) MT(O, RGui)
+Z           X           C            D             V          K            H                Dot          Semicolon   Quote
+                        LT(3, Escape)   LT(1, Space)  LT(2, Tab) LT(5, Enter) LT(4, Backspace) LT(6, Delete)
 """
 
-[[layer]]
+[[layer]] #Right
 name = "Nav" #optional name for the layer
 keys = """
-_    _    _     _      _ Again    Paste      Copy   Cut      Undo
-LGui LAlt LCtrl LShift _ CapsLock Left       Down   Up       Right
-_    _    _     _      _ Insert    Home      PageUp PageDown End
+_ _   _     _      _ Again     Paste      Copy   Cut      Undo
+LGui LAlt LCtrl LShift _ CapsLock  Left       Down   Up       Right
+_    _    _     _      _ Insert    Home      PageDown PageUp End
           A     A      A Enter     Backspace Delete
 """
 
-[[layer]]
+[[layer]] #Right
 name = "Mouse" #optional name for the layer
 keys = """
-_    _    _     _      _ Again    Paste      Copy   Cut      Undo
-LGui LAlt LCtrl LShift _ _ MouseLeft MouseDown MouseUp MouseRight
+_    _    _     _      _ Again Paste     Copy      Cut     Undo
+LGui LAlt LCtrl LShift _ _     MouseLeft MouseDown MouseUp MouseRight
 _    _    _     _      _ _ _ _ _ _
           _ _ _ MouseBtn1 MouseBtn3 MouseBtn2
 """
 
-[[layer]]
+[[layer]] #Right
 name = "Media" #optional name for the layer
 keys = """
 _    _    _     _      _ _ _       _    _    _
@@ -55,16 +53,16 @@ _    _    _     _      _ _ _      _     _    _
           _ _ _ _ _ _
 """
 
-[[layer]]
+[[layer]] #Left
 name = "Num" #optional name for the layer
 keys = """
-_ Kc7 Kc8 Kc9 _ _ _       _    _    _
+_ Kc7 Kc8 Kc9 Minus _ _       _    _    _
 _ Kc4 Kc5 Kc6 _ _ RShift RCtrl RAlt RGui
 _ Kc1 Kc2 Kc3 _ _ _      _     _    _
-          _ Kc0 _ _ _ _
+          _ Kc0 Comma _ _ _
 """
 
-[[layer]]
+[[layer]] #Left
 name = "Sym" #optional name for the layer
 keys = """
 _    _    _     _      _ _ _       _    _    _
@@ -73,30 +71,30 @@ _    _    _     _      _ _ _      _     _    _
           _ _ _ _ _ _
 """
 
-[[layer]]
+[[layer]] #Left
 name = "Fun" #optional name for the layer
 keys = """
 F12 F7 F8 F9 _ _ _ _ _ _
 F11 F4 F5 F6 _ _ RShift RCtrl RAlt RGui
 F10 F1 F2 F3 _ _ _ _ _ _
-       Esc Space Tab _ _ _
+       Escape Space Tab _ _ _
 """
 
-[[layer]]
+[[layer]] #Other
 name = "Game" #optional name for the layer
 keys = """
 Tab Q W E R T Y U I O 
-Shift A S D F G H J K L 
+LShift A S D F G H J K L 
 LCtrl Z X C V B N M A A 
-       Esc Space M _ _ _
+       LT(8,Escape) Space M _ _ _
 """
 
-[[layer]]
+[[layer]] #Other
 name = "Game2" #optional name for the layer
 keys = """
-_ Kc7 Kc8 Kc9 _ _ _       _    _    _
-Kc0 Kc4 Kc5 Kc6 _ _ RShift RCtrl RAlt RGui
-_ Kc1 Kc2 Kc3 _ _ _      _     _    _
+Kc1 Kc2 Kc3 Kc4 _ _ _       _    _    _
+_ _ _ _ _ _ RShift RCtrl RAlt RGui
+_ _ _ _ _ _ _      _     _    _
           _ _ _ _ _ _
 """
 
@@ -104,14 +102,14 @@ _ Kc1 Kc2 Kc3 _ _ _      _     _    _
 enabled = true
 
 [behavior]
-tap_hold = { enable_hrm = true, prior_idle_time = "100ms", hold_timeout = "200ms", post_wait_time = "25ms"}
+tap_hold = { enable_hrm = true, prior_idle_time = "100ms", hold_timeout = "200ms", post_wait_time = "25ms" }
 
 [split]
 connection = "ble"
 
 [storage]
 enabled = true
-clear_storage = true
+clear_storage = false
 
 [split.central]
 rows = 4
